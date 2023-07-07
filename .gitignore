@@ -1,0 +1,7 @@
+*.zip
+venv/
+.pytest_cache/
+.vscode/
+__pycache__/
+.env
+reports/
