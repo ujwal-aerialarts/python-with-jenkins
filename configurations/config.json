@@ -1,0 +1,22 @@
+[
+    {
+      "config_id": "config_1",
+      "version": "v1",
+      "input_file": "input_files/config_1/v1/input_file.txt"
+    },
+    {
+      "config_id": "config_1",
+      "version": "v2",
+      "input_file": "input_files/config_1/v2/input_file.txt"
+    },
+    {
+      "config_id": "config_2",
+      "version": "v1",
+      "input_file": "input_files/config_2/v1/input_file.txt"
+    },
+    {
+      "config_id": "config_2",
+      "version": "v2",
+      "input_file": "input_files/config_2/v2/input_file.txt"
+    }
+  ]
