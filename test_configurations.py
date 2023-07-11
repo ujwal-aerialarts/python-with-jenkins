@@ -11,4 +11,4 @@ def test_configuration(config):
     version = config["version"]
     input_file = config["input_file"]
 
-    assert config_id == "test_config"
+    assert config_id == "config_1"
