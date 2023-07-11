@@ -17,7 +17,7 @@ def load_configurations():
 
 
 @pytest.mark.parametrize("config_id, version, input_file", load_configurations())
-def test_configuration(config_id, version, input_file, caplog):
+def test_configuration(config_id, version, input_file):
     # logging.info("Testing configuration: {}".format(config["config_id"]))
     # logging.debug("Testing configuration: {}".format(config["config_id"]))
     # config_id = config["config_id"]
