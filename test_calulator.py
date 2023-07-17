@@ -16,6 +16,8 @@ def test_multiply():
     assert calculator.multiply(1, 2) == 0
 
 def test_divide():
+    load_dotenv()
+    print(os.getenv("UNIQUE_ID"))
     assert calculator.divide(1, 2) == 0.5
 
 def test_divide_by_zero():
