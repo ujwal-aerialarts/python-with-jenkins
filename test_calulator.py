@@ -2,6 +2,7 @@ import pytest
 import calculator
 from dotenv import load_dotenv
 import os
+import logging
 
 def test_add():
     print("Adding two numbers. Number 1: 1, Number 2: 2")
@@ -16,6 +17,8 @@ def test_multiply():
     assert calculator.multiply(1, 2) == 0
 
 def test_divide():
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
+    logging.info("This will be displayed")
     assert calculator.divide(1, 2) == 0.5
 
 def test_divide_by_zero():
