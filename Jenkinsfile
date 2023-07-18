@@ -16,7 +16,7 @@ pipeline {
                         string(credentialsId: 'UNIQUE_ID', variable: 'VAR1')
                     ]) {
                         // Write environment variables to .env file
-                        sh 'cat "VAR1=${VAR1}" > .env'
+                        sh 'echo "VAR1=${VAR1}" > .env'
                     }
                 }
         }
