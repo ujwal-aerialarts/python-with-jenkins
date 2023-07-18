@@ -11,7 +11,6 @@ pipeline {
         }
 
         stage('Prepare Environment') {
-            steps {
                 steps {
                     withCredentials([
                         string(credentialsId: 'UNIQUE_ID', variable: 'VAR1')
@@ -20,7 +19,6 @@ pipeline {
                         sh 'echo "VAR1=${VAR1}" > .env'
                     }
                 }
-            }
         }
 
         stage('Run Pytest') {
