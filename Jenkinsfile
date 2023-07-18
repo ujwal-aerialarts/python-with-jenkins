@@ -26,9 +26,25 @@ pipeline {
                 // Use withPythonEnv to create and manage the virtual environment
                 withPythonEnv("/usr/bin/python3.6") {
                     sh "pip install -r requirements.txt"
-                    sh "pytest"
+                    sh "pytest --junitxml=test-reports/results.xml --html=test-reports/report.html"
                 }
             }
+        }
+
+    }
+
+    post {
+        always {
+            junit 'test-reports/results.xml'
+
+            publishHTML target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: true,
+                reportDir: 'test-reports/',
+                reportFiles: 'index.html',
+                reportName: 'HTML Report'
+            ]
         }
     }
 }
