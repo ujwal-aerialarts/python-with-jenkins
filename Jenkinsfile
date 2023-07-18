@@ -24,7 +24,7 @@ pipeline {
         stage('Run Pytest') {
             steps {
                 // Use withPythonEnv to create and manage the virtual environment
-                withPythonEnv("my-venv") {
+                withPythonEnv("/usr/bin/python3.6") {
                     sh "pip install -r requirements.txt"
                     sh "pytest"
                 }
