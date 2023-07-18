@@ -1,8 +1,7 @@
 pipeline {
+
     agent any
-    triggers {
-        cron('H/3 * * * *') // Run the pipeline every day at midnight (00:00)
-    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,6 +9,28 @@ pipeline {
                 checkout scm
             }
         }
-        // Add more stages for your build and test process
+
+        stage('Prepare Environment') {
+            steps {
+                steps {
+                    withCredentials([
+                        string(credentialsId: 'UNIQUE_ID', variable: 'VAR1')
+                    ]) {
+                        // Write environment variables to .env file
+                        sh 'echo "VAR1=${VAR1}" > .env'
+                    }
+                }
+            }
+        }
+
+        stage('Run Pytest') {
+            steps {
+                // Use withPythonEnv to create and manage the virtual environment
+                withPythonEnv("my-venv") {
+                    sh "pip install -r requirements.txt"
+                    sh "pytest"
+                }
+            }
+        }
     }
 }

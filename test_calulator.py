@@ -12,7 +12,7 @@ def test_subtract():
 
 def test_multiply():
     load_dotenv()
-    print(os.getenv("TEST_KEY"))
+    print(os.getenv("VAR1"))
     assert calculator.multiply(1, 2) == 0
 
 def test_divide():
