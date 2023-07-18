@@ -26,7 +26,7 @@ pipeline {
                 // Use withPythonEnv to create and manage the virtual environment
                 withPythonEnv("/usr/bin/python3.6") {
                     sh "pip install -r requirements.txt"
-                    sh 'pytest -s --junitxml=test-reports/results.xml --html=test-reports/report_$(date +"%Y%m%d_%H%M%S").html'
+                    sh 'pytest --capture=tee-sys --junitxml=test-reports/results.xml --html=test-reports/report_$(date +"%Y%m%d_%H%M%S").html'
                 }
             }
         }
