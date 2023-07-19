@@ -22,18 +22,23 @@ pipeline {
         }
 
         stage('Run Pytest') {
-            steps {
-                withPythonEnv("/usr/bin/python3.11") {
-                    sh "pip install -r requirements.txt"
-                    sh 'pytest --capture=tee-sys --junitxml=test-reports/results.xml --html=test-reports/report.html'
+            agent {
+                docker {
+                    image 'python:3.11.0-alpine'
                 }
+            }
+            steps {
+                // withPythonEnv("/usr/bin/python3.11") {
+                //     sh "pip install -r requirements.txt"
+                //     sh 'pytest --capture=tee-sys --junitxml=test-reports/results.xml --html=test-reports/report.html'
+                // }
 
                 // sh "export PYTHONPATH=$WORKSPACE:$PYTHONPATH"
-                // sh "python3.11 -m venv venv3.11"
-                // sh "source venv3.11/bin/activate"
-                // sh "pip install -r requirements.txt"
-                // sh "pytest --junitxml=test-reports/results.xml --html=test-reports/report.html"
-                // sh "deactivate"
+                sh "python -m venv venv"
+                sh "source venv/bin/activate"
+                sh "pip install -r requirements.txt"
+                sh "pytest --junitxml=test-reports/results.xml --html=test-reports/report.html"
+                sh "deactivate"
             }
         }
 
