@@ -29,6 +29,7 @@ pipeline {
                 //     sh 'pytest --capture=tee-sys --junitxml=test-reports/results.xml --html=test-reports/report.html'
                 // }
 
+                sh "export PYTHONPATH=$WORKSPACE:$PYTHONPATH"
                 sh "python3.11 -m venv venv3.11"
                 sh "source venv3.11/bin/activate"
                 sh "pip install -r requirements.txt"
