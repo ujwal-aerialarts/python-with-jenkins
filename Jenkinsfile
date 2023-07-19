@@ -22,11 +22,11 @@ pipeline {
         }
 
         stage('Run Pytest') {
-            agent {
-                docker {
-                    image 'python:3.11.0-alpine'
-                }
-            }
+            // agent {
+            //     docker {
+            //         image 'python:3.11.0-alpine'
+            //     }
+            // }
             steps {
                 // withPythonEnv("/usr/bin/python3.11") {
                 //     sh "pip install -r requirements.txt"
@@ -34,7 +34,7 @@ pipeline {
                 // }
 
                 // sh "export PYTHONPATH=$WORKSPACE:$PYTHONPATH"
-                sh "python -m venv venv"
+                sh "python3.11 -m venv venv"
                 sh "source venv/bin/activate"
                 sh "pip install -r requirements.txt"
                 sh "pytest --junitxml=test-reports/results.xml --html=test-reports/report.html"
