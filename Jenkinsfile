@@ -23,7 +23,6 @@ pipeline {
 
         stage('Run Pytest') {
             steps {
-                Use withPythonEnv to create and manage the virtual environment
                 withPythonEnv("/usr/bin/python3.11") {
                     sh "pip install -r requirements.txt"
                     sh 'pytest --capture=tee-sys --junitxml=test-reports/results.xml --html=test-reports/report.html'
