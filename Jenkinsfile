@@ -22,11 +22,11 @@ pipeline {
         }
 
         stage('Run Pytest') {
-            agent {
-                docker {
-                    image 'python:3-alpine'
-                }
-            }
+            // agent {
+            //     docker {
+            //         image 'python:3-alpine'
+            //     }
+            // }
             steps {
                 withPythonEnv("/usr/bin/python3.9") {
                     sh "pip install -r requirements.txt"
