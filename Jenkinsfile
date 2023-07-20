@@ -28,17 +28,17 @@ pipeline {
                 }
             }
             steps {
-                // withPythonEnv("/usr/bin/python3.11") {
-                //     sh "pip install -r requirements.txt"
-                //     sh 'pytest --capture=tee-sys --junitxml=test-reports/results.xml --html=test-reports/report.html'
-                // }
+                withPythonEnv("/usr/bin/python3.9") {
+                    sh "pip install -r requirements.txt"
+                    sh 'pytest --junitxml=test-reports/results.xml --html=test-reports/report.html'
+                }
 
                 // sh "export PYTHONPATH=$WORKSPACE:$PYTHONPATH"
-                sh "python -m venv venv"
-                sh "source venv/bin/activate"
-                sh "pip install -r requirements.txt"
-                sh "pytest --junitxml=test-reports/results.xml --html=test-reports/report.html"
-                sh "deactivate"
+                // sh "python -m venv venv"
+                // sh "source venv/bin/activate"
+                // sh "pip install -r requirements.txt"
+                // sh "pytest --junitxml=test-reports/results.xml --html=test-reports/report.html"
+                // sh "deactivate"
             }
         }
 
