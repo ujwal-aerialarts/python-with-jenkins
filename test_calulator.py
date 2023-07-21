@@ -14,6 +14,7 @@ def test_subtract():
 def test_multiply():
     load_dotenv()
     print(os.getenv("VAR1"))
+    logging.info("This will be displayed")
     assert calculator.multiply(1, 2) == 0
 
 def test_divide():
