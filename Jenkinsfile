@@ -48,17 +48,17 @@ pipeline {
         always {
             junit 'test-reports/results.xml'
 
-            // publishHTML target: [
-            //     allowMissing: false,
-            //     alwaysLinkToLastBuild: false,
-            //     keepAll: true,
-            //     reportDir: 'test-reports/',
-            //     reportFiles: '*.html',
-            //     reportName: 'HTML Report'
-            // ]
+            publishHTML target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: true,
+                reportDir: 'test-reports/',
+                reportFiles: '*.html',
+                reportName: 'HTML Report'
+            ]
 
-            // // Archive the HTML report for each build
-            // archiveArtifacts artifacts: 'test-reports/report.html', allowEmptyArchive: true
+            // Archive the HTML report for each build
+            archiveArtifacts artifacts: 'test-reports/report.html', allowEmptyArchive: true
         }
     }
 }
