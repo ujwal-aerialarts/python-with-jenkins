@@ -14,11 +14,12 @@ def test_subtract():
 def test_multiply():
     load_dotenv()
     print(os.getenv("VAR1"))
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     logging.info("This will be displayed")
     assert calculator.multiply(1, 2) == 0
 
 def test_divide():
-    logging.basicConfig(level=logging.INFO, format="%(message)s")
+    logging.basicConfig(level=logging.INFO)
     logging.info("This will be displayed")
     assert calculator.divide(1, 2) == 0.5
 
