@@ -13,7 +13,7 @@ def test_add():
 def test_subtract():
     response = {"code":2,"message":"The provided credential information is invalid","payload":null}
     raise Exception(f'Subtract failed: {response.text}')
-    assert calculator.subtract(1, 2) == -1
+    # assert calculator.subtract(1, 2) == -1
 
 def test_multiply():
     load_dotenv()
