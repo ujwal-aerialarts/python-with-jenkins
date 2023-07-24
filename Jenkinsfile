@@ -66,7 +66,8 @@ pipeline {
             script {
                 def recipients = 'woozaal7@gmail.com,ujwal.aerialarts@gmail.com' // List of email recipients separated by comma
                 def htmlReportPath = 'test-reports/report.html'
-                emailext attachmentsPattern: htmlReportPath, attachLog: true, compressLog: true, subject: '$DEFAULT_SUBJECT', to: recipients, body: '$DEFAULT_CONTENT'
+                def receivers = [[$class: 'DevelopersRecipientProvider'],[$class: 'RequesterRecipientProvider'],[$class: 'CulpritsRecipientProvider']]
+                emailext attachmentsPattern: htmlReportPath, attachLog: true, compressLog: true, subject: '$DEFAULT_SUBJECT', recipientProviders: receivers to: 'uzwalparajuli07+jenkins@gmail.com', body: '$DEFAULT_CONTENT'
             }
         }
     }
