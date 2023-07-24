@@ -60,5 +60,14 @@ pipeline {
             // Archive the HTML report for each build
             archiveArtifacts artifacts: 'test-reports/report.html', allowEmptyArchive: true
         }
+
+        // Send email notification on failure
+        failure {
+            script {
+                def recipients = 'woozaal7@gmail.com,ujwal.aerialarts@gmail.com' // List of email recipients separated by comma
+                def htmlReportPath = "${JENKINS_HOME}/workspace/${JOB_NAME}/test-reports/report.html"
+                emailext attachmentsPattern: htmlReportPath, attachLog: true, compressLog: true, subject: '$DEFAULT_SUBJECT', to: recipients, body: '$DEFAULT_CONTENT'
+            }
+        }
     }
 }
