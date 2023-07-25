@@ -64,7 +64,7 @@ pipeline {
         // Send email notification on failure
         failure {
             script {
-                def recipients = 'uzwalparajuli07+jenkins@gmail.com' // List of email recipients separated by comma
+                // def recipients = 'uzwalparajuli07+jenkins@gmail.com' // List of email recipients separated by comma
                 def htmlReportPath = 'test-reports/report.html'
                 def receivers = [
                     // The DevelopersRecipientProvider will include email addresses of developers who contributed to the changes in the build
@@ -76,7 +76,7 @@ pipeline {
                     // The CulpritsRecipientProvider will include email addresses of users (culprits) who caused the build to fail
                     [$class: 'CulpritsRecipientProvider']
                 ]
-                emailext attachmentsPattern: htmlReportPath, attachLog: true, compressLog: true, subject: '$DEFAULT_SUBJECT', recipientProviders: receivers, to: recipients, body: '$DEFAULT_CONTENT'
+                emailext attachmentsPattern: htmlReportPath, attachLog: true, compressLog: true, subject: '$DEFAULT_SUBJECT', recipientProviders: receivers, body: '$DEFAULT_CONTENT'
             }
         }
     }
