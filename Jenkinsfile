@@ -13,10 +13,10 @@ pipeline {
         stage('Prepare Environment') {
                 steps {
                     withCredentials([
-                        string(credentialsId: 'UNIQUE_ID', variable: 'VAR1')
+                        file(credentialsId: 'test_pytest_env', variable: 'DOT_ENV_FILE')
                     ]) {
                         // Write environment variables to .env file
-                        sh 'echo "VAR1=${VAR1}" > .env'
+                        sh "cat ${DOT_ENV_FILE} > .env"
                     }
                 }
         }
@@ -66,7 +66,16 @@ pipeline {
             script {
                 def recipients = 'uzwalparajuli07+jenkins@gmail.com' // List of email recipients separated by comma
                 def htmlReportPath = 'test-reports/report.html'
-                def receivers = [[$class: 'DevelopersRecipientProvider'],[$class: 'RequesterRecipientProvider'],[$class: 'CulpritsRecipientProvider']]
+                def receivers = [
+                    // The DevelopersRecipientProvider will include email addresses of developers who contributed to the changes in the build
+                    [$class: 'DevelopersRecipientProvider'],
+
+                    // The RequesterRecipientProvider will include the email address of the user who triggered the build
+                    [$class: 'RequesterRecipientProvider'],
+
+                    // The CulpritsRecipientProvider will include email addresses of users (culprits) who caused the build to fail
+                    [$class: 'CulpritsRecipientProvider']
+                ]
                 emailext attachmentsPattern: htmlReportPath, attachLog: true, compressLog: true, subject: '$DEFAULT_SUBJECT', recipientProviders: receivers, to: recipients, body: '$DEFAULT_CONTENT'
             }
         }
