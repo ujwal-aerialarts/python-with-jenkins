@@ -16,7 +16,7 @@ pipeline {
                         file(credentialsId: 'test_pytest_env', variable: 'DOT_ENV_FILE')
                     ]) {
                         // Write environment variables to .env file
-                        sh "cat ${DOT_ENV_FILE} > .env"
+                        sh "cat \${DOT_ENV_FILE} > .env"
                     }
                 }
         }
