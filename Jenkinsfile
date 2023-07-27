@@ -67,7 +67,7 @@ pipeline {
             ]
 
             // Archive the HTML report for each build
-            archiveArtifacts artifacts: 'test-reports/report.html', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'test-reports/report_*.html', allowEmptyArchive: true
         }
 
         // Send email notification on failure
