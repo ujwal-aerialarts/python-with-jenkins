@@ -6,6 +6,11 @@ pipeline {
     //     cron('H/2 * * * *') // Run the pipeline every day at midnight (00:00)
     // }
 
+    options {
+        // Set the number of builds to keep for artifacts and test reports
+        buildDiscarder(logRotator(numToKeepStr: '1', artifactNumToKeepStr: '2'))
+    }
+
     stages {
         stage('Checkout') {
             steps {
