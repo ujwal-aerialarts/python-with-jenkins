@@ -39,7 +39,7 @@ pipeline {
             steps {
                 withPythonEnv("/usr/bin/python3.9") {
                     sh "pip install -r requirements.txt"
-                    sh 'pytest -o log_cli=true --log-cli-level=INFO --junitxml=test-reports/results.xml --html=reports/report_$(date +"%Y%m%d_%H%M%S").html'
+                    sh 'pytest -o log_cli=true --log-cli-level=INFO --junitxml=test-reports/results.xml --html=test-reports/report_$(date +"%Y%m%d_%H%M%S").html'
                 }
 
                 // sh "export PYTHONPATH=$WORKSPACE:$PYTHONPATH"
